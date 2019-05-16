@@ -1,0 +1,22 @@
+# FrinxOpenconfigNetworkInstanceNetworkinstancesNetworkInstance
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Vlans** | [***FrinxOpenconfigNetworkInstanceNetworkinstancesNetworkinstanceVlans**](frinx.openconfig.network.instance.networkinstances.networkinstance.Vlans.md) | Optional[Container for VLAN configuration and state variables] REF:Optional.empty | [optional] [default to null]
+**Encapsulation** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceEncapsulation**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.Encapsulation.md) | Optional[Configuration parameters relating to the encapsulation used for the network instance] REF:Optional.empty | [optional] [default to null]
+**Interfaces** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceInterfaces**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.Interfaces.md) | Optional[The interfaces that are associated with this network instance] REF:Optional.empty | [optional] [default to null]
+**Fdb** | [***FrinxOpenconfigNetworkInstanceL2niinstanceFdb**](frinx.openconfig.network.instance.l2niinstance.Fdb.md) | Optional[Operational state and configuration parameters relating to the forwarding database of the network instance] REF:Optional.empty | [optional] [default to null]
+**ConnectionPoints** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceConnectionPoints**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.ConnectionPoints.md) | Optional[The set of connection points within a forwarding instance] REF:Optional.empty | [optional] [default to null]
+**Tables** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceTables**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.Tables.md) | Optional[The routing tables that are managed by this network instance] REF:Optional.empty | [optional] [default to null]
+**TableConnections** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceTableConnections**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.TableConnections.md) | Optional[Policies dictating how RIB or FIB entries are propagated between tables] REF:Optional.empty | [optional] [default to null]
+**Name** | **string** | Optional[A unique name identifying the network instance] REF:Optional.empty | [optional] [default to null]
+**Mpls** | [***FrinxOpenconfigNetworkInstanceNetworkinstancesNetworkinstanceMpls**](frinx.openconfig.network.instance.networkinstances.networkinstance.Mpls.md) | Optional[Anchor point for mpls configuration and operational data] REF:Optional.empty | [optional] [default to null]
+**Protocols** | [***FrinxOpenconfigNetworkInstanceNetworkinstancesNetworkinstanceProtocols**](frinx.openconfig.network.instance.networkinstances.networkinstance.Protocols.md) | Optional[The routing protocols that are enabled for this network-instance.] REF:Optional.empty | [optional] [default to null]
+**PolicyForwarding** | [***FrinxOpenconfigNetworkInstanceNetworkinstancesNetworkinstancePolicyForwarding**](frinx.openconfig.network.instance.networkinstances.networkinstance.PolicyForwarding.md) | Optional[Configuration and operational state relating to policy-forwarding within a network instance.] REF:Optional.empty | [optional] [default to null]
+**InterInstancePolicies** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceInterInstancePolicies**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.InterInstancePolicies.md) | Optional[Policies dictating how RIB or FIB entries are imported to and exported from this instance] REF:Optional.empty | [optional] [default to null]
+**Config** | [***FrinxOpenconfigNetworkInstanceNetworkinstancetopNetworkinstancesNetworkinstanceConfig**](frinx.openconfig.network.instance.networkinstancetop.networkinstances.networkinstance.Config.md) | Optional[Configuration parameters relating to a network instance] REF:Optional.empty | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

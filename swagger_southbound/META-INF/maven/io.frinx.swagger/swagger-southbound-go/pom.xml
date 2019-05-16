@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2017 Frinx and others. All rights reserved.
+  ~
+  ~ This program and the accompanying materials are made available under the
+  ~ terms of the Eclipse Public License v1.0 which accompanies this distribution,
+  ~ and is available at http://www.eclipse.org/legal/epl-v10.html
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <artifactId>odlparent-lite</artifactId>
+    <version>3.1.1-Oxygen-SR2.4_2_0-frinxodl</version>
+    <relativePath>../../frinx-odlparent/odlparent-lite</relativePath>
+  </parent>
+
+  <groupId>io.frinx.swagger</groupId>
+  <artifactId>swagger-southbound-go</artifactId>
+  <version>4.2.0.frinx</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <swagger.codegen.version>2.4.1</swagger.codegen.version>
+    <package_name>swagger_southbound</package_name>
+    <golang.version>1.11.5</golang.version>
+    <mvn.golang.version>2.2.0</mvn.golang.version>
+    <build.dir>${project.basedir}/src</build.dir>
+    <package.dir>${project.basedir}/src/${package_name}</package.dir>
+    <swagger.api.dir>${project.build.directory}/generated-sources/swagger-api/</swagger.api.dir>
+    <swagger.api.local.file>${swagger.api.dir}/${swagger.api.file}</swagger.api.local.file>
+    <swagger.api.file>southbound.yaml</swagger.api.file>
+  </properties>
+
+  <build>
+    <sourceDirectory>${build.dir}</sourceDirectory>
+
+    <resources>
+      <resource>
+        <directory>.</directory>
+        <includes>
+          <include>${project.build.directory}/generated-sources/swagger/</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>io.frinx.swagger</groupId>
+                  <artifactId>swagger-southbound</artifactId>
+                  <version>${project.version}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${swagger.api.dir}</outputDirectory>
+                  <includes>*.yaml</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-code</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>io.swagger.codegen.SwaggerCodegen</mainClass>
+              <includePluginDependencies>true</includePluginDependencies>
+              <includeProjectDependencies>false</includeProjectDependencies>
+              <commandlineArgs>generate -l frinx_go -i ${swagger.api.local.file} -o ${package.dir} --additional-properties packageName=${package_name},projectName=frinx,packageVersion=${project.version}</commandlineArgs>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-codegen-cli</artifactId>
+            <version>${swagger.codegen.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.12</version>
+          </dependency>
+          <dependency>
+            <groupId>io.frinx.swagger</groupId>
+            <artifactId>swagger-go-generator</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enfore_go_was_generated</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <rules>
+                <requireFilesExist>
+                  <files>
+                    <file>${package.dir}/client.go</file>
+                  </files>
+                </requireFilesExist>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.igormaznitsa</groupId>
+        <artifactId>mvn-golang-wrapper</artifactId>
+        <version>${mvn.golang.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <goVersion>${golang.version}</goVersion>
+        </configuration>
+        <executions>
+          <execution>
+            <id>go_get</id>
+            <goals>
+              <goal>get</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <packages>
+                <package>golang.org/x/oauth2</package>
+              </packages>
+            </configuration>
+          </execution>
+          <execution>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <packages>
+                <package>${package_name}</package>
+              </packages>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <copy todir="${project.build.directory}/classes">
+                  <fileset dir="${project.basedir}/src/${package_name}" includes="**/*"/>
+                </copy>
+                <delete>
+                  <fileset dir="${project.basedir}/src/${package_name}" includes="**/*"/>
+                </delete>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>

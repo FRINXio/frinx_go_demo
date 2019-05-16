@@ -1,0 +1,10 @@
+# FrinxOpenconfigIsisIsisglobalbaseReferencebandwidthConfig
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ReferenceBandwidth** | **int64** | Optional[ISIS Reference Bandwidth value] REF:Optional.empty | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

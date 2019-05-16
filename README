@@ -1,0 +1,15 @@
+# Readme
+
+This is an example of "How to use FRINX go client lib to mount a netconf device and pull interface info in openconfig format"
+
+## Extract FRINX go libs in go home folder
+
+git clone ...
+
+IMPORTANT: In main.go change the IP, username and password for the device to mount and also change the dockerContainerIp
+
+## Run the example
+
+IMPORTANT: Make sure FRINX ODL is running
+
+go run ./frinx_go_demo/main.go

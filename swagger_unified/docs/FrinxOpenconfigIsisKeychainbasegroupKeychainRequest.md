@@ -1,0 +1,10 @@
+# FrinxOpenconfigIsisKeychainbasegroupKeychainRequest
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**FrinxOpenconfigNetworkInstancekeychain** | [***FrinxOpenconfigIsisKeychainbasegroupKeychain**](frinx.openconfig.isis.keychainbasegroup.Keychain.md) |  | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

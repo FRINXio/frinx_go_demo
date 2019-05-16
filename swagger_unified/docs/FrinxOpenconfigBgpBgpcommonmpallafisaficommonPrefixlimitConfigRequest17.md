@@ -1,0 +1,10 @@
+# FrinxOpenconfigBgpBgpcommonmpallafisaficommonPrefixlimitConfigRequest17
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**FrinxOpenconfigNetworkInstanceconfig** | [***FrinxOpenconfigBgpBgpcommonmpallafisaficommonPrefixlimitConfig**](frinx.openconfig.bgp.bgpcommonmpallafisaficommon.prefixlimit.Config.md) |  | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
