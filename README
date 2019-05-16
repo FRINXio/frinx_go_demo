@@ -6,6 +6,7 @@ This is an example of "How to use FRINX go client lib to mount a netconf device 
 
 cd ~/go/src
 go get github.com/marosmars/frinx_go_demo
+
 IMPORTANT: In main.go change the IP, username and password for the device to mount and also change the dockerContainerIp
 
 ## Run the example
